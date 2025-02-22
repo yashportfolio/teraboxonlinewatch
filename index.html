@@ -3,66 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terabox Video Player</title>
+    <title>Online Video Player</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-            background-color: #f4f4f4;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
         }
-        input {
-            width: 80%;
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input[type="text"] {
+            width: 70%;
             padding: 10px;
-            margin: 10px 0;
+            margin-right: 10px;
         }
         button {
             padding: 10px 20px;
-            background-color: #28a745;
+            background-color: #4CAF50;
             color: white;
             border: none;
+            border-radius: 4px;
             cursor: pointer;
         }
         button:hover {
-            background-color: #218838;
+            background-color: #45a049;
         }
-        video {
-            width: 100%;
-            max-width: 720px;
+        #videoContainer {
             margin-top: 20px;
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        #videoPlayer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
 <body>
-    <h2>Watch Terabox Videos Online</h2>
-    <input type="text" id="teraboxLink" placeholder="Enter Terabox Video Link">
-    <button onclick="fetchVideo()">Get Video</button>
-    <br>
-    <video id="videoPlayer" controls></video>
-    
+    <div class="container">
+        <h1>Online Video Player</h1>
+        <div>
+            <input type="text" id="videoUrl" placeholder="Paste video URL here...">
+            <button onclick="loadVideo()">Play</button>
+        </div>
+        <div id="videoContainer">
+            <video id="videoPlayer" controls>
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
     <script>
-        async function fetchVideo() {
-            let inputLink = document.getElementById("teraboxLink").value;
-            if (!inputLink.includes("terabox.com")) {
-                alert("Please enter a valid Terabox link!");
-                return;
-            }
+        function loadVideo() {
+            const videoUrl = document.getElementById('videoUrl').value;
+            const videoPlayer = document.getElementById('videoPlayer');
             
-            try {
-                let apiUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(inputLink)}`;
-                let response = await fetch(apiUrl);
-                let data = await response.json();
-                let text = data.contents;
-                
-                let videoUrlMatch = text.match(/https:\/\/download[^"']+/);
-                if (videoUrlMatch) {
-                    let videoUrl = videoUrlMatch[0];
-                    document.getElementById("videoPlayer").src = videoUrl;
-                } else {
-                    alert("Could not extract video URL. Try opening the link manually.");
+            if (videoUrl) {
+                // Basic URL validation
+                try {
+                    new URL(videoUrl);
+                } catch {
+                    alert('Please enter a valid URL');
+                    return;
                 }
-            } catch (error) {
-                alert("Error fetching video URL: " + error);
+                
+                videoPlayer.src = videoUrl;
+                videoPlayer.load();
+                videoPlayer.play().catch(error => {
+                    console.log('Video play failed:', error);
+                });
             }
         }
     </script>
