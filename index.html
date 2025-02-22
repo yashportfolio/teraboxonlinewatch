@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terabox Video Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f4f4f4;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        video {
+            width: 100%;
+            max-width: 720px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Watch Terabox Videos Online</h2>
+    <input type="text" id="teraboxLink" placeholder="Enter Terabox Video Link">
+    <button onclick="fetchVideo()">Get Video</button>
+    <br>
+    <video id="videoPlayer" controls></video>
+    
+    <script>
+        function fetchVideo() {
+            let inputLink = document.getElementById("teraboxLink").value;
+            if (!inputLink.includes("terabox.com")) {
+                alert("Please enter a valid Terabox link!");
+                return;
+            }
+            
+            // Simulate getting direct video URL (Terabox may require manual extraction)
+            let videoUrl = inputLink.replace("terabox.com", "direct.terabox.com");
+            
+            let videoPlayer = document.getElementById("videoPlayer");
+            videoPlayer.src = videoUrl;
+            videoPlayer.style.display = "block";
+        }
+    </script>
+</body>
+</html>
