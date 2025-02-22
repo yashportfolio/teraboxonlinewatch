@@ -49,8 +49,10 @@
             }
             
             try {
-                let response = await fetch(inputLink);
-                let text = await response.text();
+                let apiUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(inputLink)}`;
+                let response = await fetch(apiUrl);
+                let data = await response.json();
+                let text = data.contents;
                 
                 let videoUrlMatch = text.match(/https:\/\/download[^"']+/);
                 if (videoUrlMatch) {
