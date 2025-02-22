@@ -41,19 +41,27 @@
     <video id="videoPlayer" controls></video>
     
     <script>
-        function fetchVideo() {
+        async function fetchVideo() {
             let inputLink = document.getElementById("teraboxLink").value;
             if (!inputLink.includes("terabox.com")) {
                 alert("Please enter a valid Terabox link!");
                 return;
             }
             
-            // Simulate getting direct video URL (Terabox may require manual extraction)
-            let videoUrl = inputLink.replace("terabox.com", "direct.terabox.com");
-            
-            let videoPlayer = document.getElementById("videoPlayer");
-            videoPlayer.src = videoUrl;
-            videoPlayer.style.display = "block";
+            try {
+                let response = await fetch(inputLink);
+                let text = await response.text();
+                
+                let videoUrlMatch = text.match(/https:\/\/download[^"']+/);
+                if (videoUrlMatch) {
+                    let videoUrl = videoUrlMatch[0];
+                    document.getElementById("videoPlayer").src = videoUrl;
+                } else {
+                    alert("Could not extract video URL. Try opening the link manually.");
+                }
+            } catch (error) {
+                alert("Error fetching video URL: " + error);
+            }
         }
     </script>
 </body>
