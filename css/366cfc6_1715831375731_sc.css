@@ -1,0 +1,201 @@
+*{
+  -webkit-transition: all 500ms cubic-bezier(.23, 1, 0.32, 1);
+  -o-transition: all 500ms cubic-bezier(.23, 1, 0.32, 1);
+  transition: all 500ms cubic-bezier(.23, 1, 0.32, 1);
+}
+body{
+  background-color: #F5F5F5;
+  margin: 0;
+  overflow-x: hidden;
+  -webkit-transition: all 500ms cubic-bezier(.23, 1, 0.32, 1);
+  -o-transition: all 500ms cubic-bezier(.23, 1, 0.32, 1);
+  transition: all 500ms cubic-bezier(.23, 1, 0.32, 1);
+}
+#dir_root{
+  margin-top: 5%;
+  margin-bottom: 5%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: auto;
+  grid-template-rows: auto;
+  gap: 10px;
+  -webkit-transition: all 500ms cubic-bezier(.23, 1, 0.32, 1);
+  -o-transition: all 500ms cubic-bezier(.23, 1, 0.32, 1);
+  transition: all 500ms cubic-bezier(.23, 1, 0.32, 1);
+}
+.search-bar {
+  margin: 10px;
+  position: relative;
+}
+#url-input {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 14px;
+  background: black;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: white;
+  font-family: "Source Code Pro", monospace;
+}
+#url-input:focus{
+  outline: none;
+}
+#submit_btn {
+  height: 100%;
+  width: 30%;
+  padding: 10px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-family: "Source Code Pro", monospace;
+}
+#submit_btn:hover,
+#pasteBtn:hover {
+  background-color: darkgreen;
+}
+.download-prompt {
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    max-width: 500px;
+    margin: auto;
+    background: black;
+    width: 90vw;
+    -webkit-transition: all 500ms cubic-bezier(.23, 1, 0.32, 1);
+    -o-transition: all 500ms cubic-bezier(.23, 1, 0.32, 1);
+    transition: all 500ms cubic-bezier(.23, 1, 0.32, 1);
+}
+.file-info {
+    width: 100%;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    color: white;
+    text-align: left;
+    font-family: "Source Code Pro", monospace;
+  }
+#video_img{
+  background: black;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  height: auto;
+  position: relative;
+  -webkit-transition: all 500ms cubic-bezier(.23, 1, 0.32, 1);
+  -o-transition: all 500ms cubic-bezier(.23, 1, 0.32, 1);
+  transition: all 500ms cubic-bezier(.23, 1, 0.32, 1);
+}
+img,
+video,
+source {
+  border-radius: 10px;
+  overflow: hidden;
+  -o-object-fit: contain;
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+  -webkit-transition: all 500ms cubic-bezier(.23, 1, 0.32, 1);
+  -o-transition: all 500ms cubic-bezier(.23, 1, 0.32, 1);
+  transition: all 500ms cubic-bezier(.23, 1, 0.32, 1);
+}
+img {
+  height: 20vh;
+}
+.download-btn {
+    margin-top: 10px;
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    border: none;
+    border-radius: 10px;
+    display: block;
+    font-size: 18px;
+    width: 100%;
+    font-family: "Source Code Pro", monospace;
+    -webkit-transition: all 500ms cubic-bezier(.23, 1, 0.32, 1);
+    -o-transition: all 500ms cubic-bezier(.23, 1, 0.32, 1);
+    transition: all 500ms cubic-bezier(.23, 1, 0.32, 1);
+}
+.download-btn:hover{
+  background: green;
+  color: white;}
+
+.player {
+  --plyr-color-main: green;
+}
+#noPreviewImg{
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+#loading_bg {
+  background: rgba(0, 255, 0, 0.1);
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all 250ms cubic-bezier(.23, 1, 0.32, 1);
+  -o-transition: all 250ms cubic-bezier(.23, 1, 0.32, 1);
+  transition: all 250ms cubic-bezier(.23, 1, 0.32, 1);
+}
+lottie-player {
+  color: green;
+  width: 15vw;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+#toast_id{
+  font-family: "Source Code Pro", monospace;
+}
+.center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+#page_header{
+  text-align: center;
+  font-family: "Source Code Pro", monospace;
+}
+#page_sub_header{
+  font-size: 100%;
+  text-align: center;
+  margin-left: 50px;
+  margin-right: 50px;
+  font-family: "Source Code Pro", monospace;
+}
+#pasteBtn {
+  height: 100%;
+  width: 20%;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  padding: 10px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-family: "Source Code Pro", monospace;
+}
