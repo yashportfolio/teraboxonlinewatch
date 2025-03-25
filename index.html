@@ -1,5 +1,57 @@
 <!DOCTYPE html><html dir="ltr" lang="en"><!--[ <head> Open ]--><head>
-  <link href="css/366cfc6_1715831375731_sc.css" rel="stylesheet">
+<head>
+    <title>Terabox Video Player</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {font-family: Arial; max-width: 800px; margin: 0 auto; padding: 20px;}
+        #videoContainer {margin-top: 20px;}
+        video {width: 100%;}
+    </style>
+</head>
+<body>
+    <h1>Terabox Video Player</h1>
+    <input type="text" id="videoUrl" placeholder="Enter Terabox Video URL">
+    <button onclick="loadVideo()">Load Video</button>
+    <div id="videoContainer"></div>
+
+    <script>
+    async function loadVideo() {
+        const teraboxUrl = document.getElementById('videoUrl').value;
+        if(!teraboxUrl) return alert('Please enter URL');
+
+        try {
+            // Use CORS proxy to bypass restrictions
+            const proxyUrl = 'https://api.allorigins.win/raw?url=';
+            const response = await fetch(proxyUrl + encodeURIComponent(teraboxUrl));
+            const html = await response.text();
+
+            // Extract video URL using regex (may need adjustment)
+            const regex = /"play_url":"(https:\/\/[^"]+\.mp4)"/;
+            const match = html.match(regex);
+            
+            if(match && match[1]) {
+                const videoUrl = match[1].replace(/\\\//g, '/');
+                showVideoPlayer(videoUrl);
+            } else {
+                throw new Error('Video URL not found');
+            }
+        } catch (error) {
+            alert('Error fetching video: ' + error.message);
+        }
+    }
+
+    function showVideoPlayer(videoUrl) {
+        const videoHTML = `
+            <video controls autoplay>
+                <source src="${videoUrl}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        `;
+        document.getElementById('videoContainer').innerHTML = videoHTML;
+    }
+    </script>
+</body>
+	<link href="css/366cfc6_1715831375731_sc.css" rel="stylesheet">
 <link href="css/plyr.css" rel="stylesheet">
 <script src="js/iziToast.min.js"></script>
 <link href="css/iziToast.min.css" rel="stylesheet">
